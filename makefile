@@ -1,4 +1,4 @@
 all:
-	firefox animation.html
+	firefox animation.html &
 clean:
 	rm *~ .#*
