@@ -36,8 +36,7 @@ var drawDot = function(e){
     c.setAttribute("r", 10);
     c.setAttribute("fill", "red");
     c.setAttribute("stroke", "black");
-    c.addEventListener("click", changeColor, true);
-    c.addEventListener("dblclick", deleteCircle);
+    c.addEventListener("click", changeColor);
     svg.appendChild(c);
     e.stopPropagation();
 };
@@ -48,24 +47,23 @@ var changeColor = function(e){
         this.setAttribute("fill", "blue");
     }
     else{
-        this.setAttribute("fill", "red");
+	console.log("delete");
+	svg.removeChild(this);
+	randCircle();
     }
     e.stopPropagation();
 }
 
-//delete clicked circle on doubleclick
-var deleteCircle = function(e){
-    svg.removeChild(this);
+//draws a circle at random coordinates
+var randCircle = function(e){
     var c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
     c.setAttribute("cx", Math.random() * (width - 10));
     c.setAttribute("cy", Math.random() * (height - 10));
     c.setAttribute("r", 10);
     c.setAttribute("fill", "red");
     c.setAttribute("stroke", "black");
-    c.addEventListener("click", changeColor, true);
-    c.addEventListener("dblclick", deleteCircle);
+    c.addEventListener("click", changeColor);
     svg.appendChild(c);
-    e.stopPropagation();
 }
 
 //add the event listeners
